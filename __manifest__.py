@@ -9,7 +9,7 @@
     'website': 'https://www.rydlab.ru',
     'license': 'GPL-3',
     'depends': [
-        'hr_timesheet',
+        'hr_timesheet', 'web'
     ],
     'data': [
         'views/hr_timesheet_view.xml'
