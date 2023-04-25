@@ -59,12 +59,17 @@ class Many2XAutocomplete extends OWLM2XAutocomplete {
       this.lastProm.abort(false);
     }
 
-    this.lastProm = this.orm.call(this.props.resModel, "test", [], {
-      name: request,
-      args: this.props.getDomain(),
-      limit: this.props.searchLimit + 1,
-      context: this.props.context,
-    });
+    this.lastProm = this.orm.call(
+      this.props.resModel,
+      "search_with_date_order",
+      [],
+      {
+        name: request,
+        args: this.props.getDomain(),
+        limit: this.props.searchLimit + 1,
+        context: this.props.context,
+      }
+    );
 
     const records = await this.lastProm;
 
@@ -88,7 +93,7 @@ class Many2XAutocomplete extends OWLM2XAutocomplete {
       });
     }
 
-    if (!this.props.noSearchMore && this.props.searchLimit < records.length) {
+    if (!this.props.noSearchMore) {
       options.push({
         label: this.env._t("Search More..."),
         action: this.onSearchMore.bind(this, request),
